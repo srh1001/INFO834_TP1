@@ -1,0 +1,6 @@
+CREATE TABLE Account (
+    login VARCHAR(50) UNIQUE PRIMARY KEY NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
+    firstName VARCHAR(50) NOT NULL,
+    pw VARCHAR(255) NOT NULL
+);
