@@ -1,7 +1,8 @@
 # INFO834_TP1
 
-Lien github : 
-
+Lien github : https://github.com/srh1001/INFO834_TP1.git   
+  
+  
 ## Rappel :
 L'objectif de ce TP était de créer une page web permettant à des utilisateurs de se connecter.  
 Les données des comptes utilisateurs sont stockées sur une base de données SQL.  
@@ -56,6 +57,6 @@ Vous pouvez modifier les contraintes sur le nombre limite de connexions au cours
   
 Vous pouvez vérifier l'ajout des données dans Redis depuis le terminal du client avec les commandes suivantes par exemple :  
  - SCAN 0  
- - LRANGE connexion:<votre login> 0 -1  
+ - LRANGE connexion:votreLogin 0 -1  
   
 
