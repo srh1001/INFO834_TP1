@@ -54,7 +54,7 @@ Ouvrir la page http://localhost/EtuServices/login.php .
 ## Utilisation :  
 Vous pouvez maintenant créer votre compte depuis login.php ou utiliser un compte existant (login: login1, mot de passe: testmdp) puis vous connecter.  
   
-Vous pouvez modifier les contraintes sur le nombre limite de connexions au cours des n dernières minutes dans le fichier connexion_redis.py à la ligne ? .  
+Vous pouvez modifier les contraintes sur le nombre limite de connexions au cours des n dernières minutes dans le fichier connexion_redis.py à la ligne 39.  
   
 Vous pouvez vérifier l'ajout des données dans Redis depuis le terminal du client avec les commandes suivantes par exemple :  
  - *SCAN 0*  
