@@ -26,17 +26,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pythonBinPath = "C:\Users\srhmr\Downloads\Anaconda\python.exe";
             $scriptPath = "connexion_redis.py";
             $cmd = $pythonBinPath." ".$scriptPath." ".$login;
-            $shelloutput = shell_exec($cmd);
+            $shelloutput = exec($cmd);
 
-
-            // Afficher le résultat du script python
+            // Afficher le résultat du script python dans la console
             echo '<script>';
-            echo 'console.log("Résultat du script Python : ' . addslashes($shelloutput) . '");';
-            echo '</script>';            
-
-            // Rediriger vers la page connectée
-            header("Location: connected.php");
-            exit();
+            echo 'console.log(' . json_encode($shelloutput, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) . ');';
+            echo '</script>';
+ 
+            // Verification du code retourné par le script python
+            if ($shelloutput == 200) { // Realiser la connexion si code 200
+                header("Location: connected.php");
+                exit();
+            } elseif ($shelloutput == 500) { // Cas du nombre de connexion maximum atteint
+                $_SESSION["error_message"] = "Nombre maximal de connexions atteint dans la limite de temps.";
+                header("Refresh: 1; url=login.php");
+                exit();
+            } else { // Autre erreur
+                $_SESSION["error_message"] = "Erreur lors de la connexion - CODE ERREUR : ". $shelloutput;
+                header("Refresh: 1; url=login.php");
+                exit();
+            }
+            
 
         } else {
             // Mot de passe incorrect
@@ -49,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Login incorrect
         $_SESSION["error_message"] = "Login ou mot de passe incorrect.";
-
+        
         header("Refresh: 1; url=login.php");       
         exit();
     }
